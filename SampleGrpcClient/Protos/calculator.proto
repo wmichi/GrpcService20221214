@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option csharp_namespace = "SampleGrpcClient";
+
+package calculator;
+
+service Calculator {
+  rpc Add10 (AddRequest) returns (AddResponse);
+}
+
+message AddRequest {
+  int32 input_number = 1;
+}
+
+message AddResponse {
+  string message = 1;
+}

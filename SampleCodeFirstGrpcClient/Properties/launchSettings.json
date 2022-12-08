@@ -1,0 +1,13 @@
+﻿{
+  "profiles": {
+    "SampleCodeFirstGrpcClient": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": false,
+      "applicationUrl": "http://localhost:5255;https://localhost:7019",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
