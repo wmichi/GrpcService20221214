@@ -6,7 +6,7 @@ using Grpc.Net.Client.Web;
 using ProtoBuf.Grpc.Client;
 using SampleCodeFirstGrpcContracts;
 
-using var channel = GrpcChannel.ForAddress("https://localhost:7104", new GrpcChannelOptions
+using var channel = GrpcChannel.ForAddress("https://localhost:7103", new GrpcChannelOptions
 {
     HttpHandler = new GrpcWebHandler(new HttpClientHandler())
 });
