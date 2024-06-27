@@ -17,12 +17,13 @@ app.UseGrpcWeb(new GrpcWebOptions { DefaultEnabled = true });
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapGrpcService<ICalculatorService>();
+    endpoints.MapGrpcService<IListService>();
 });
 
 
 // for checking the generated proto file
 var generator = new SchemaGenerator();
-var schema = generator.GetSchema<ICalculatorService>();
+var schema = generator.GetSchema<IListService>();
 Console.WriteLine(schema);
 
 app.Run();
