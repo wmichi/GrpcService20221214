@@ -58,7 +58,7 @@ public class IListResponse
 public class ListResponse
 {
     [ProtoMember(1)] 
-    public List<string> Result { get; set; } = new List<string>();
+    public List<string> Result { get; set; } = new ();
 }
 
 [ProtoContract]

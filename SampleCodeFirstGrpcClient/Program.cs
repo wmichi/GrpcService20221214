@@ -16,7 +16,6 @@ var response = await client.Add10Async(
     new AddRequest { InputNumber = 5 }, CancellationToken.None);
 
 Console.WriteLine(response.Message);
-Console.WriteLine("Press any key to exit...");
 
 var listClient = channel.CreateGrpcService<IListService>();
 
@@ -80,4 +79,5 @@ catch (Exception ex)
     Console.WriteLine("GetArrayAsync Failed");
 }
 
+Console.WriteLine("Press any key to exit...");
 Console.ReadKey();

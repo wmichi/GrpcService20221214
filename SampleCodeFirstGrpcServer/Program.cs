@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCodeFirstGrpc();
 builder.Services.AddSingleton<ICalculatorService, CalculatorService>();
+builder.Services.AddSingleton<IListService, ListService>();
 
 var app = builder.Build();
 
