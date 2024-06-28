@@ -25,33 +25,33 @@ public interface IListService
 public class ListRequest
 {
     [ProtoMember(1)]
-    public string Id { get; set; }
+    public bool IsEmpty { get; set; }
 }
 
 [ProtoContract]
 public class IEnumerableResponse
 {
-    [ProtoMember(1)] public IEnumerable<string> Result { get; set; } = Array.Empty<string>();
+    [ProtoMember(1)] public IEnumerable<string> Result { get; set; } = new List<string>();
 }
 
 [ProtoContract]
 public class IReadOnlyCollectionResponse
 {
-    [ProtoMember(1)] public IReadOnlyCollection<string> Result { get; set; } = Array.Empty<string>();
+    [ProtoMember(1)] public IReadOnlyCollection<string> Result { get; set; } = new List<string>();
 }
 
 [ProtoContract]
 public class ICollectionResponse
 {
     [ProtoMember(1)]
-    public ICollection<string> Result { get; set; } = Array.Empty<string>();
+    public ICollection<string> Result { get; set; } = new List<string>();
 }
 
 [ProtoContract]
 public class IListResponse
 {
     [ProtoMember(1)]
-    public IList<string> Result { get; set; } = Array.Empty<string>();
+    public IList<string> Result { get; set; } = new List<string>();
 }
 
 [ProtoContract]
