@@ -53,11 +53,22 @@ public class Response<TResult>
 //    public override IEnumerable<TResult> Result { get; init; } = Array.Empty <TResult> ();
 //}
 
+
+
 [ProtoContract]
 public class IReadOnlyCollectionResponse<TResult> : Response<IReadOnlyCollection<TResult>>
 {
     [ProtoMember(1, OverwriteList = true)] 
     public override IReadOnlyCollection<TResult> Result { get; init; } = Array.Empty<TResult>();
+}
+
+public static class IReadOnlyCollectionResponse
+{
+    public static IReadOnlyCollectionResponse<TResult> Ok<TResult>(IReadOnlyCollection<TResult> result) =>
+        new()
+        {
+            Result = result
+        };
 }
 
 [ProtoContract]

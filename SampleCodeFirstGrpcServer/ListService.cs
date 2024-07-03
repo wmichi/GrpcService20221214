@@ -24,16 +24,10 @@ public class ListService : IListService
     {
         if (request.IsEmpty)
         {
-            return new IReadOnlyCollectionResponse<string>()
-            {
-                Result = new List<string>()
-            };
+            return IReadOnlyCollectionResponse.Ok(new List<string>());
         }
 
-        return new IReadOnlyCollectionResponse<string>()
-        {
-            Result = new List<string>() { "test", "sample" }
-        };
+        return IReadOnlyCollectionResponse.Ok(new List<string> { "test", "sample" });
     }
 
     public async Task<ICollectionResponse<string>> GetICollectionAsync(ListRequest request, CancellationToken cancellationToken)
