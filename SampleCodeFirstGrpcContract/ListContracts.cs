@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,58 +13,77 @@ namespace SampleCodeFirstGrpcContracts;
 [Service]
 public interface IListService
 {
+    //[Operation]
+    //Task<IEnumerableResponse<string>> GetIEnumerableAsync(ListRequest request, CancellationToken cancellationToken);
+
     [Operation]
-    Task<IEnumerableResponse> GetIEnumerableAsync(ListRequest request, CancellationToken cancellationToken);
-    Task<IReadOnlyCollectionResponse> GetIReadOnlyCollectionAsync(ListRequest request, CancellationToken cancellationToken);
-    Task<ICollectionResponse> GetICollectionAsync(ListRequest request, CancellationToken cancellationToken);
-    Task<IListResponse> GetIListAsync(ListRequest request, CancellationToken cancellationToken);
-    Task<ListResponse> GetListAsync(ListRequest request, CancellationToken cancellationToken);
-    Task<ArrayResponse> GetArrayAsync(ListRequest request, CancellationToken cancellationToken);
+    Task<IReadOnlyCollectionResponse<string>> GetIReadOnlyCollectionAsync(ListRequest request, CancellationToken cancellationToken);
+
+    [Operation]
+    Task<ICollectionResponse<string>> GetICollectionAsync(ListRequest request, CancellationToken cancellationToken);
+
+    [Operation]
+    Task<IListResponse<string>> GetIListAsync(ListRequest request, CancellationToken cancellationToken);
+    
+    [Operation]
+    Task<ListResponse<string>> GetListAsync(ListRequest request, CancellationToken cancellationToken);
+
+    [Operation]
+    Task<ArrayResponse<string>> GetArrayAsync(ListRequest request, CancellationToken cancellationToken);
 }
 
 [ProtoContract]
 public class ListRequest
 {
     [ProtoMember(1)]
-    public bool IsEmpty { get; set; }
+    public bool IsEmpty { get; init; }
 }
 
 [ProtoContract]
-public class IEnumerableResponse
-{
-    [ProtoMember(1)] public IEnumerable<string> Result { get; set; } = new List<string>();
-}
-
-[ProtoContract]
-public class IReadOnlyCollectionResponse
-{
-    [ProtoMember(1)] public IReadOnlyCollection<string> Result { get; set; } = new List<string>();
-}
-
-[ProtoContract]
-public class ICollectionResponse
+public class Response<TResult>
 {
     [ProtoMember(1)]
-    public ICollection<string> Result { get; set; } = new List<string>();
+    public virtual TResult Result { get; init; }
+}
+
+//[ProtoContract]
+//public class IEnumerableResponse<TResult> : Response<IEnumerable<TResult>>
+//{
+//    [ProtoMember(1, OverwriteList = true)]
+//    public override IEnumerable<TResult> Result { get; init; } = Array.Empty <TResult> ();
+//}
+
+[ProtoContract]
+public class IReadOnlyCollectionResponse<TResult> : Response<IReadOnlyCollection<TResult>>
+{
+    [ProtoMember(1, OverwriteList = true)] 
+    public override IReadOnlyCollection<TResult> Result { get; init; } = Array.Empty<TResult>();
 }
 
 [ProtoContract]
-public class IListResponse
+public class ICollectionResponse<TResult> : Response<ICollection<TResult>>
 {
-    [ProtoMember(1)]
-    public IList<string> Result { get; set; } = new List<string>();
+    [ProtoMember(1, OverwriteList = true)]
+    public override ICollection<TResult> Result { get; init; } = Array.Empty<TResult>();
 }
 
 [ProtoContract]
-public class ListResponse
+public class IListResponse<TResult> : Response<IList<TResult>>
 {
-    [ProtoMember(1)] 
-    public List<string> Result { get; set; } = new ();
+    [ProtoMember(1, OverwriteList = true)]
+    public override IList<TResult> Result { get; init; }  = Array.Empty<TResult>();
 }
 
 [ProtoContract]
-public class ArrayResponse
+public class ListResponse<TResult> : Response<List<TResult>>
 {
-    [ProtoMember(1)]
-    public string[] Result { get; set; } = Array.Empty<string>();
+    [ProtoMember(1, OverwriteList = true)]
+    public override List<TResult> Result { get; init; } = new ();
+}
+
+[ProtoContract]
+public class ArrayResponse<TResult> : Response<TResult[]>
+{
+    [ProtoMember(1, OverwriteList = true)]
+    public override TResult[] Result { get; init; } = Array.Empty<TResult>();
 }

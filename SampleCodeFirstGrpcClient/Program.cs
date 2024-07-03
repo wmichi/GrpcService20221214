@@ -18,24 +18,24 @@ using var channel = GrpcChannel.ForAddress("https://localhost:7103", new GrpcCha
 
 //Console.WriteLine(response.Message);
 
-var isEmpty = false;
+var isEmpty = true;
 Console.WriteLine($"IsEmpty = {isEmpty}");
 
 var listClient = channel.CreateGrpcService<IListService>();
 
-try
-{
-    var ienumerableResponse = await listClient.GetIEnumerableAsync(
-        new ListRequest { IsEmpty = isEmpty }, CancellationToken.None);
-    Console.WriteLine(ienumerableResponse.Result);
-    Console.WriteLine(ienumerableResponse.Result.FirstOrDefault());
-    Console.WriteLine("GetIEnumerableAsync Succeeded");
-}
-catch (Exception ex)
-{
-    Console.WriteLine(ex);
-    Console.WriteLine("GetIEnumerableAsync Failed");
-}
+//try
+//{
+//    var ienumerableResponse = await listClient.GetIEnumerableAsync(
+//        new ListRequest { IsEmpty = isEmpty }, CancellationToken.None);
+//    Console.WriteLine(ienumerableResponse.Result);
+//    Console.WriteLine(ienumerableResponse.Result.FirstOrDefault());
+//    Console.WriteLine("GetIEnumerableAsync Succeeded");
+//}
+//catch (Exception ex)
+//{
+//    Console.WriteLine(ex);
+//    Console.WriteLine("GetIEnumerableAsync Failed");
+//}
 
 try
 {

@@ -3,97 +3,97 @@
 namespace SampleCodeFirstGrpcServer;
 public class ListService : IListService
 {
-    public async Task<IEnumerableResponse> GetIEnumerableAsync(ListRequest request, CancellationToken cancellationToken)
-    {
-        if (request.IsEmpty)
-        {
-            return new IEnumerableResponse()
-            {
-                Result = new List<string>()
-            };
-        }
+    //public async Task<IEnumerableResponse> GetIEnumerableAsync(ListRequest request, CancellationToken cancellationToken)
+    //{
+    //    if (request.IsEmpty)
+    //    {
+    //        return new IEnumerableResponse()
+    //        {
+    //            Result = new List<string>()
+    //        };
+    //    }
 
-        return new IEnumerableResponse()
-        {
-            Result = new List<string>(){ "test", "sample" }
-        };
-    }
+    //    return new IEnumerableResponse()
+    //    {
+    //        Result = new List<string>(){ "test", "sample" }
+    //    };
+    //}
 
-    public async Task<IReadOnlyCollectionResponse> GetIReadOnlyCollectionAsync(ListRequest request,
+    public async Task<IReadOnlyCollectionResponse<string>> GetIReadOnlyCollectionAsync(ListRequest request,
         CancellationToken cancellationToken)
     {
         if (request.IsEmpty)
         {
-            return new IReadOnlyCollectionResponse()
+            return new IReadOnlyCollectionResponse<string>()
             {
                 Result = new List<string>()
             };
         }
 
-        return new IReadOnlyCollectionResponse()
+        return new IReadOnlyCollectionResponse<string>()
         {
             Result = new List<string>() { "test", "sample" }
         };
     }
 
-    public async Task<ICollectionResponse> GetICollectionAsync(ListRequest request, CancellationToken cancellationToken)
+    public async Task<ICollectionResponse<string>> GetICollectionAsync(ListRequest request, CancellationToken cancellationToken)
     {
         if (request.IsEmpty)
         {
-            return new ICollectionResponse()
+            return new ICollectionResponse<string>()
             {
                 Result = new List<string>()
             };
         }
 
-        return new ICollectionResponse()
+        return new ICollectionResponse<string>()
         {
             Result = new List<string>() { "test", "sample" }
         };
     }
 
-    public async Task<IListResponse> GetIListAsync(ListRequest request, CancellationToken cancellationToken)
+    public async Task<IListResponse<string>> GetIListAsync(ListRequest request, CancellationToken cancellationToken)
     {
         if (request.IsEmpty)
         {
-            return new IListResponse()
+            return new IListResponse<string>()
             {
                 Result = new List<string>()
             };
         }
 
-        return new IListResponse()
+        return new IListResponse<string>()
         {
             Result = new List<string>() { "test", "sample" }
         };
     }
 
-    public async Task<ListResponse> GetListAsync(ListRequest request, CancellationToken cancellationToken)
+    public async Task<ListResponse<string>> GetListAsync(ListRequest request, CancellationToken cancellationToken)
     {
         if (request.IsEmpty)
         {
-            return new ListResponse()
+            return new ListResponse<string>()
             {
                 Result = new List<string>()
             };
         }
-        return new ListResponse()
+        return new ListResponse<string>()
         {
             Result = new List<string>() { "test", "sample" }
         };
     }
 
-    public async Task<ArrayResponse> GetArrayAsync(ListRequest request, CancellationToken cancellationToken)
+    public async Task<ArrayResponse<string>> GetArrayAsync(ListRequest request, CancellationToken cancellationToken)
     {
         if (request.IsEmpty)
         {
-            return new ArrayResponse()
+            return new ArrayResponse<string>()
             {
                 Result = new string[]{}
             };
         }
 
-        return new ArrayResponse()
+        return new ArrayResponse<string>()
         {
             Result = new string[] { "test", "sample" }
         };
